@@ -166,7 +166,7 @@ st.markdown("""
 # Function to get list of uploaded files
 def get_uploaded_files():
     try:
-        response = requests.get("http://127.0.0.1:8000/files/")
+        response = requests.get("https://aryan-fastapi.loca.lt/files/")
         response.raise_for_status()
         return response.json().get("files", [])
     except requests.exceptions.RequestException as e:
@@ -177,7 +177,7 @@ def get_uploaded_files():
 def get_response(query):
     try:
         st.write(f"DEBUG: Sending query: {query}")
-        response = requests.post("http://127.0.0.1:8000/query/", json={"query": query})
+        response = requests.post("https://aryan-fastapi.loca.lt/query/", json={"query": query})
         response.raise_for_status()
         answer = response.json().get("answer", "No answer found.")
         token_count = response.json().get("token_count", 0)
@@ -237,7 +237,7 @@ with st.sidebar:
                 for file in uploaded_files
             ]
             try:
-                response = requests.post("http://127.0.0.1:8000/upload/", files=files)
+                response = requests.post("https://aryan-fastapi.loca.lt/upload/", files=files)
                 response.raise_for_status()
                 if response.status_code == 200:
                     response_data = response.json()
@@ -305,7 +305,7 @@ with col_clear1:
 with col_clear2:
     if st.button("Clear Files", type="secondary"):
         try:
-            response = requests.delete("http://127.0.0.1:8000/clear_files/")
+            response = requests.delete("https://aryan-fastapi.loca.lt/clear_files/")
             response.raise_for_status()
             st.session_state.uploaded_files = {}
             st.session_state.file_uploaded = False
