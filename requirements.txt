@@ -1,0 +1,11 @@
+streamlit
+requests
+fastapi
+uvicorn
+python-dotenv
+pandas
+langchain
+langchain-community
+langchain-mistralai
+mistralai
+sentence-transformers 
